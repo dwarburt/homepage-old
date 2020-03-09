@@ -4,14 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TerminalComponent } from './terminal/terminal.component';
-import { TerminalHistoryItemComponent } from './terminal-history-item/terminal-history-item.component';
+import { TerminalItemComponent } from './terminal-item/terminal-item.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TerminalComponent,
-    TerminalHistoryItemComponent
+    TerminalItemComponent
   ],
   imports: [
     BrowserModule,
