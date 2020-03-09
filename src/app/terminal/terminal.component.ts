@@ -9,5 +9,8 @@ export class TerminalComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  run(command: string): void {
+    alert("my dear!");
+  }
 
 }

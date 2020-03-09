@@ -1,6 +1,10 @@
 <div>
-    <app-terminal-item></app-terminal-item>
+    <app-terminal-item prompt="typit> "></app-terminal-item>
 </div>
 <div>
-    <input type="text" placeholder="commmand" />
+        <span class="prompt">prompt> </span>
+        <input
+            (keyup.enter)="run($event.target.value)"
+            type="text"
+        />
 </div>
