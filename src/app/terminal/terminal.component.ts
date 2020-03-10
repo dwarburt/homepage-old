@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TerminalRow } from '../terminal-row';
 
 @Component({
   selector: 'app-terminal',
@@ -6,11 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./terminal.component.scss'],
 })
 export class TerminalComponent implements OnInit {
-
+  history: TerminalRow[];
   ngOnInit(): void {
+    this.history = [];
+
   }
-  run(command: string): void {
-    alert("my dear!");
+  run(cmdInput: HTMLInputElement): void {
+    let command = cmdInput.value;
+    cmdInput.value = '';
+    this.history.push({
+      prompt: "prompt> ",
+      command: command,
+      output: "ok"
+    })
   }
 
 }

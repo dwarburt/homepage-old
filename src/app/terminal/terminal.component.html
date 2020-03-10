@@ -1,10 +1,16 @@
-<div>
-    <app-terminal-item prompt="typit> "></app-terminal-item>
-</div>
+<ul>
+    <li *ngFor="let row of history">
+        <div>
+            <span class="prompt">{{row.prompt}}</span>
+            <span class="command">{{row.command}}</span>
+        </div>
+        <span class="output">{{row.output}}</span>
+    </li>
+</ul>
 <div>
         <span class="prompt">prompt> </span>
         <input
-            (keyup.enter)="run($event.target.value)"
+            (keyup.enter)="run($event.target)"
             type="text"
         />
 </div>
