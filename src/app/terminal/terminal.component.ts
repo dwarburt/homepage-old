@@ -15,6 +15,11 @@ export class TerminalComponent implements OnInit {
   }
   ngOnInit(): void {
     this.history = [this.executorService.run('motd')];
+    this.executorService.terminalEvents.subscribe((evt: string) => {
+      switch (evt) {
+        case 'clear': this.history = []; break;
+      }
+    })
   }
   run(): void {
     let command = this.cmdInput.nativeElement.value;

@@ -2,14 +2,14 @@
     <ul>
         <li *ngFor="let row of history">
             <div>
-                <span class="prompt">{{row.prompt}}</span>
+                <span class="prompt" [innerHTML]="row.prompt"></span>
                 <span class="command">{{row.command}}</span>
             </div>
             <span class="output" [innerHTML]="row.output"></span>
         </li>
     </ul>
     <div>
-            <span class="prompt">{{executorService.prompt}}</span>
+            <span class="prompt" [innerHTML]="executorService.prompt"></span>
             <input
                 #cmdInput
                 class="terminal"

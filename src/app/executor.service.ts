@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { TerminalRow } from './terminal-row'
 import { Command } from './command';
 
@@ -20,9 +20,13 @@ export class ExecutorService {
   get prompt() {
     return this._prompt;
   }
+  terminalEvents = new EventEmitter();
   constructor() {
-    this._prompt = "guest@rubbersoft.com$ ";
-   }
+    this._prompt = `<span class="prompt-username">guest</span>` +
+      `<span class="prompt-at">@</span>` +
+      `<span class="prompt-hostname">rubbersoft.com</span>` +
+      `<span class="prompt-terminator">$&nbsp;</span>`;
+  }
   run(command_line: string) : TerminalRow {
     let command = new Command(command_line);
     var output: string;
@@ -48,7 +52,12 @@ export class ExecutorService {
   @CommandFunc("retrieve contact information.")
   private contact(args: string[]): string {
     let email = atob("ZGF2aWRAcnViYmVyc29mdC5jb20K");
-    return `Please direct emails to: <a href="mailto:${email}">${email}</a>`;
+    return this.makeTable({
+      "cell phone": atob("KDg1OSkgNjA4LTIwNjg="),
+      "email (personal)": atob("ZGF2aWQud2FyYnVydG9uQGdtYWlsLmNvbQ=="),
+      "email (contracting)": atob("ZGF2aWRAcnViYmVyc29mdC5jb20K"),
+      "twitter": atob("QGR3YXJidXJ0Cg==")
+    })
   }
   @CommandFunc("display a list of files that can be downloaded")
   private ls(args: string[]): string {
@@ -68,6 +77,11 @@ export class ExecutorService {
       <p>welcome to the rubbersoft.com homepage text based interface.
       Use this terminal to interact with the homepage. use 'help' to 
       get a list of commands to browse files, download them, or retrieve other information.</p>`
+  }
+  @CommandFunc("Clear the previous commands from the terminal")
+  private clear(args: string[]): string {
+    this.terminalEvents.emit('clear');
+    return '';
   }
   private makeTable(tbl : object) : string {
     let ret = '<table>';
