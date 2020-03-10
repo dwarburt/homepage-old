@@ -54,8 +54,20 @@ export class ExecutorService {
   private ls(args: string[]): string {
     return this.makeTable({
       "resume.pdf": "Resume for David Warburton in PDF format.",
-      "photo.jpg": "low resolution contact profile image for David Warburton"
+      "gravatar.png": "low resolution contact profile image for David Warburton"
     })
+  }
+  @CommandFunc("Download a binary file. Usage: download <filename>")
+  private download(args: string[]): string {
+    window.open(`assets/${args[0]}`)
+    return "";
+  }
+  @CommandFunc("Display the message of the day")
+  private motd(args: string[]): string {
+    return `<h1>Command Terminal</h1>
+      <p>welcome to the rubbersoft.com homepage text based interface.
+      Use this terminal to interact with the homepage. use 'help' to 
+      get a list of commands to browse files, download them, or retrieve other information.</p>`
   }
   private makeTable(tbl : object) : string {
     let ret = '<table>';
