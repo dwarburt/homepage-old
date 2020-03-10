@@ -49,4 +49,9 @@ export class ExecutorService {
     }
     return ret;
   }
+  @CommandFunc("retrieve contact information.")
+  private contact(args: string[]): string {
+    let email = atob("ZGF2aWRAcnViYmVyc29mdC5jb20K");
+    return `Please direct emails to: <a href="mailto:${email}">${email}</a>`;
+  }
 }
