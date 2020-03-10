@@ -43,15 +43,18 @@ export class ExecutorService {
   }
   @CommandFunc("print a list of commands.")
   private help(args: string[]): string {
-    let ret = '<table>';
-    for (let func in commandTable) {
-      ret += `<tr><td>${func}</td><td class="padleft">${commandTable[func]}</td></tr>`;
-    }
-    return ret + '</table>';
+    return this.makeTable(commandTable);
   }
   @CommandFunc("retrieve contact information.")
   private contact(args: string[]): string {
     let email = atob("ZGF2aWRAcnViYmVyc29mdC5jb20K");
     return `Please direct emails to: <a href="mailto:${email}">${email}</a>`;
+  }
+  private makeTable(tbl : object) : string {
+    let ret = '<table>';
+    for (let prop in tbl) {
+      ret += `<tr><td>${prop}</td><td class="padleft">${tbl[prop]}</td></tr>`;
+    }
+    return ret + '</table>';
   }
 }
