@@ -47,7 +47,7 @@ export class ExecutorService {
     for (let func in commandTable) {
       ret += `<tr><td>${func}</td><td class="padleft">${commandTable[func]}</td></tr>`;
     }
-    return ret;
+    return ret + '</table>';
   }
   @CommandFunc("retrieve contact information.")
   private contact(args: string[]): string {
