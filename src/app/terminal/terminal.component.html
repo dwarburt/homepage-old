@@ -1,16 +1,22 @@
-<ul>
-    <li *ngFor="let row of history">
-        <div>
-            <span class="prompt">{{row.prompt}}</span>
-            <span class="command">{{row.command}}</span>
-        </div>
-        <span class="output" [innerHTML]="row.output"></span>
-    </li>
-</ul>
-<div>
-        <span class="prompt">{{executorService.prompt}}</span>
-        <input
-            (keyup.enter)="run($event.target)"
-            type="text"
-        />
+<div class="terminal-window">
+    <h1>Command Terminal</h1>
+    <p>welcome to the rubbersoft.com homepage text based interface. Use this terminal to interact with the homepage. use `help` to get a list of commands to browse files, download them, or retrieve other information.</p>
+    <ul>
+        <li *ngFor="let row of history">
+            <div>
+                <span class="prompt">{{row.prompt}}</span>
+                <span class="command">{{row.command}}</span>
+            </div>
+            <span class="output" [innerHTML]="row.output"></span>
+        </li>
+    </ul>
+    <div>
+            <span class="prompt">{{executorService.prompt}}</span>
+            <input
+                class="terminal"
+                autofocus
+                (keyup.enter)="run($event.target)"
+                type="text"
+            />
+    </div>
 </div>

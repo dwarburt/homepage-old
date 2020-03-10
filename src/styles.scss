@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+span.red {
+    color: #e26161
+}
+li {
+    list-style-type: none;
+}
+ul {
+    padding-inline-start: 0em;
+}
+div.terminal-window {
+    font-family: monospace;
+    color: white;
+    background-color: rgb(44, 46, 47);
+    float: left;
+    width: 600px;
+    padding: 25px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgba(71, 13, 13, 0.527);
+}
+input.terminal {
+    color: white;
+    background-color: rgb(44, 46, 47);
+    border: none;
+    font-family: monospace
+}
+input.terminal:focus {
+    outline: none;
+}
