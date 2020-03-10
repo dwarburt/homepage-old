@@ -19,7 +19,7 @@ export class ExecutorService {
     if (this[command.cmd] != undefined) {
       output = this[command.cmd](command.args);
     } else {
-      output = "command not found";
+      output = `‘${command.cmd}’: <span class="red">command not found</span>`;
     }
     return {
       command: command_line,

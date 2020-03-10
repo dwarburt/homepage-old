@@ -4,7 +4,7 @@
             <span class="prompt">{{row.prompt}}</span>
             <span class="command">{{row.command}}</span>
         </div>
-        <span class="output">{{row.output}}</span>
+        <span class="output" [innerHTML]="row.output"></span>
     </li>
 </ul>
 <div>
