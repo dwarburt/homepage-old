@@ -22,7 +22,8 @@ export class TerminalComponent implements OnInit {
     this.history.push(this.executorService.run(command));
   }
   focus() : void {
-    console.log("clicked");
-    this.cmdInput.nativeElement.focus();
+    if (window.getSelection().toString() === "") {
+      this.cmdInput.nativeElement.focus();
+    }
   }
 }
