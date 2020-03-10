@@ -2,6 +2,16 @@ import { Injectable } from '@angular/core';
 import { TerminalRow } from './terminal-row'
 import { Command } from './command';
 
+let commandTable = {};
+function CommandFunc(helpText: string) {
+  return function (
+    target: any, 
+    propertyKey: string,
+    descriptor: PropertyDescriptor) {
+      commandTable[propertyKey] = helpText;
+  }
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,7 +37,16 @@ export class ExecutorService {
       output: output
     }
   }
+  @CommandFunc("print the arguments.")
   private echo(args: string[]): string {
     return args.join(" ");
+  }
+  @CommandFunc("print a list of commands.")
+  private help(args: string[]): string {
+    let ret = '<table>';
+    for (let func in commandTable) {
+      ret += `<tr><td>${func}</td><td class="padleft">${commandTable[func]}</td></tr>`;
+    }
+    return ret;
   }
 }
