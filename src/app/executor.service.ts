@@ -50,6 +50,13 @@ export class ExecutorService {
     let email = atob("ZGF2aWRAcnViYmVyc29mdC5jb20K");
     return `Please direct emails to: <a href="mailto:${email}">${email}</a>`;
   }
+  @CommandFunc("display a list of files that can be downloaded")
+  private ls(args: string[]): string {
+    return this.makeTable({
+      "resume.pdf": "Resume for David Warburton in PDF format.",
+      "photo.jpg": "low resolution contact profile image for David Warburton"
+    })
+  }
   private makeTable(tbl : object) : string {
     let ret = '<table>';
     for (let prop in tbl) {
