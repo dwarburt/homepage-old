@@ -1,4 +1,4 @@
-<div class="terminal-window">
+<div class="terminal-window" (click)="focus()">
     <h1>Command Terminal</h1>
     <p>welcome to the rubbersoft.com homepage text based interface. Use this terminal to interact with the homepage. use `help` to get a list of commands to browse files, download them, or retrieve other information.</p>
     <ul>
@@ -13,9 +13,10 @@
     <div>
             <span class="prompt">{{executorService.prompt}}</span>
             <input
+                #cmdInput
                 class="terminal"
                 autofocus
-                (keyup.enter)="run($event.target)"
+                (keyup.enter)="run()"
                 type="text"
             />
     </div>

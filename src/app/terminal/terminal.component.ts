@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TerminalRow } from '../terminal-row';
 import { ExecutorService } from '../executor.service';
 
@@ -8,17 +8,21 @@ import { ExecutorService } from '../executor.service';
   styleUrls: ['./terminal.component.scss'],
 })
 export class TerminalComponent implements OnInit {
+  @ViewChild('cmdInput') cmdInput : ElementRef;
   history: TerminalRow[];
   constructor(public executorService : ExecutorService) {
 
   }
   ngOnInit(): void {
     this.history = [];
-
   }
-  run(cmdInput: HTMLInputElement): void {
-    let command = cmdInput.value;
-    cmdInput.value = '';
+  run(): void {
+    let command = this.cmdInput.nativeElement.value;
+    this.cmdInput.nativeElement.value = '';
     this.history.push(this.executorService.run(command));
+  }
+  focus() : void {
+    console.log("clicked");
+    this.cmdInput.nativeElement.focus();
   }
 }
