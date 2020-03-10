@@ -8,7 +8,7 @@
     </li>
 </ul>
 <div>
-        <span class="prompt">prompt> </span>
+        <span class="prompt">{{executorService.prompt}}</span>
         <input
             (keyup.enter)="run($event.target)"
             type="text"

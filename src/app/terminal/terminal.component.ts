@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TerminalRow } from '../terminal-row';
+import { ExecutorService } from '../executor.service';
 
 @Component({
   selector: 'app-terminal',
@@ -8,6 +9,9 @@ import { TerminalRow } from '../terminal-row';
 })
 export class TerminalComponent implements OnInit {
   history: TerminalRow[];
+  constructor(public executorService : ExecutorService) {
+
+  }
   ngOnInit(): void {
     this.history = [];
 
@@ -15,11 +19,6 @@ export class TerminalComponent implements OnInit {
   run(cmdInput: HTMLInputElement): void {
     let command = cmdInput.value;
     cmdInput.value = '';
-    this.history.push({
-      prompt: "prompt> ",
-      command: command,
-      output: "ok"
-    })
+    this.history.push(this.executorService.run(command));
   }
-
 }
