@@ -11,12 +11,10 @@ jobs:
       - run: echo ${{secrets.DOCKER_PASSWORD}} | docker login -u dwarburton --password-stdin
       - run: docker push dwarburton/homepage:$GITHUB_SHA
       - run: docker logout
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
       - uses: docker://dwarburton/doctl-cli
+        env:
+          GITHUB_SHA: $GITHUB_SHA
         with:
           DOCTL_API_KEY: ${{ secrets.DOCTL_API_KEY }}
-          args: which doctl && which kubectl
-        
+            
+          args: bash -c "doctl -t $INPUT_DOCTL_API_KEY kubernetes cluster config save && envsubst ./deploy.yaml | kubectl apply -f -"
