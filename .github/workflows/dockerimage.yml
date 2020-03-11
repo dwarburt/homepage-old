@@ -15,4 +15,5 @@ jobs:
         env:
           GITHUB_SHA: $GITHUB_SHA
           DOCTL_API_KEY: ${{ secrets.DOCTL_API_KEY }}
-          args: bash ./deploy.sh
+        with:
+          args: deploy.sh
