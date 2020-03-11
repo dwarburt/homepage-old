@@ -15,7 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          which doctl
-          which kubectl
-        uses: docker://dwarburton/doctl-cli
+      - uses: docker://dwarburton/doctl-cli
+        with:
+          DOCTL_API_KEY: ${{ secrets.DOCTL_API_KEY }}
+          args: which doctl && which kubectl
+        
