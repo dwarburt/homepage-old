@@ -14,6 +14,5 @@ jobs:
       - uses: docker://dwarburton/doctl-cli
         env:
           GITHUB_SHA: $GITHUB_SHA
-        with:
           DOCTL_API_KEY: ${{ secrets.DOCTL_API_KEY }}
-          args: bash -c "doctl -t $INPUT_DOCTL_API_KEY kubernetes cluster config save rcluster && envsubst ./deploy.yaml | kubectl apply -f -"
+          args: bash ./deploy.sh
