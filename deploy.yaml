@@ -58,5 +58,5 @@
       http:
         paths:
         - backend:
-            serviceName: kubernetes-dashboard
-            servicePort: 443
+            serviceName: homepage
+            servicePort: 80
