@@ -9,4 +9,4 @@ doctl \
     kubernetes cluster \
     config save rcluster
 echo "Deploying dwarburton/homepage:$GITHUB_SHA"
-envsubst ./deploy.yaml | kubectl apply -f -
+envsubst < ./deploy.yaml | kubectl apply -f -
