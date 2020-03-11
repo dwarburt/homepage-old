@@ -8,8 +8,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: docker build -t dwarburton/homepage:$GITHUB_SHA .
+      - run: echo ${{secrets.DOCKER_PASSWORD}} | docker login -u dwarburton --password-stdin
+      - run: docker push dwarburton/homepage:$GITHUB_SHA
+      - run: docker logout
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: docker ps
+      - run: |
+          which doctl
+          which kubectl
+        uses: docker://dwarburton/doctl-cli
