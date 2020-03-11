@@ -6,15 +6,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout
-      - uses: elgohr/Publish-Docker-Github-Action
-        with:
-          name: dwarburton/homepage
-          username: dwarburton
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          tags: $GITHUB_SHA
+      - uses: actions/checkout@v2
+      - run: docker build -t dwarburton/homepage:$GITHUB_SHA .
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout
+      - uses: actions/checkout@v2
       - run: docker ps
