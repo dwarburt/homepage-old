@@ -1,12 +1,20 @@
 name: Docker Image CI
-on: [push]
+on:
+  push:
+    branches: [master]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: elgohr/Publish-Docker-Github-Action@master
-      with:
-        name: dwarburton/homepage
-        username: dwarburton
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: actions/checkout
+      - uses: elgohr/Publish-Docker-Github-Action
+        with:
+          name: dwarburton/homepage
+          username: dwarburton
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          tags: $GITHUB_SHA
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout
+      - run: docker ps

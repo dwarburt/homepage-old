@@ -20,7 +20,7 @@
       spec:
         containers:
         - name: homepage
-          image: dwarburton/homepage
+          image: dwarburton/homepage:$GITHUB_SHA
           resources:
             limits:
               memory: "128Mi"
